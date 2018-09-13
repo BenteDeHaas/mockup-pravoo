@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MockPravooModelService } from './../mock-pravoo-model.service';
 
 @Component({
   selector: 'app-pravoo-model-category',

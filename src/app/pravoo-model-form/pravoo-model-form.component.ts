@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MockPravooModelService } from './../mock-pravoo-model.service';
 
 @Component({
   selector: 'app-pravoo-model-form',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PravooModelFormComponent implements OnInit {
 
+  step = 0;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 }

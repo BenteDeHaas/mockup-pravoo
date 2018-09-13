@@ -1,3 +1,24 @@
 <p>
-  pravoo-model-category works!
-</p>
+    <mat-expansion-panel [expanded]=true (opened)=true hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Leerlijnen / kindkenmerken
+          </mat-panel-title>
+          <mat-panel-description>
+            Leerlijnen / kindkenmerken onder deze cluster
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <!--lijstcategorien toe te voegen met plusje--><!--sleepbaar-->
+        <mat-form-field>
+          <input matInput placeholder="Categorienaam">
+        </mat-form-field>
+        <mat-form-field>
+          <input picker placeholder="kindkenmerk">
+        </mat-form-field>
+
+        <app-pravoo-model-category-stepper></app-pravoo-model-category-stepper>
+
+      </mat-expansion-panel>
+
+

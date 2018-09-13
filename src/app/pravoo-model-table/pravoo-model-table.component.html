@@ -1,3 +1,76 @@
 <p>
-  pravoo-model-table works!
-</p>
+  <table mat-table [dataSource]=pravooModellen class="mat-elevation-z8">
+      <ng-container matColumnDef="sortorder">
+        <span>
+          <th mat-header-cell *matHeaderCellDef> # </th>
+          <td mat-cell *matCellDef="let pravoo"> <span class="badge">{{pravoo.id}} </span></td>
+        </span>
+      </ng-container>
+      <ng-container matColumnDef="pravooname">
+        <span>
+          <th mat-header-cell *matHeaderCellDef [ngClass]="'column-pravooName'"> Naam </th>
+          <td mat-cell *matCellDef="let pravoo" [ngClass]="'column-pravooName'"> {{pravoo.name}} </td>
+        </span>
+      </ng-container>
+
+      <ng-container matColumnDef="iconedit">
+        <span>
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon>
+                edit
+            </mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let pravoo">
+            <mat-icon>
+              edit
+            </mat-icon>
+          </td>
+        </span> <!--systemmodellen geen edit/delete icon-->
+      </ng-container>
+      <ng-container matColumnDef="iconview">
+        <span>
+          <th mat-header-cell *matHeaderCellDef>
+            <span><mat-icon>
+              open_in_browser <!--remove_red_eye -->
+            </mat-icon></span>
+          </th>
+          <td mat-cell *matCellDef="let pravoo">
+            <span><mat-icon>
+              open_in_browser
+            </mat-icon></span>
+          </td>
+        </span>
+      </ng-container>
+      <ng-container matColumnDef="iconcopy">
+        <span>
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon>
+              content_copy
+            </mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let pravoo">
+            <mat-icon>
+              content_copy
+            </mat-icon>
+          </td>
+        </span>
+      </ng-container>
+      <ng-container matColumnDef="icondelete">
+        <span>
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon>
+              delete
+            </mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let pravoo">
+            <mat-icon>
+              delete
+            </mat-icon>
+          </td>
+        </span><!--systemmodellen geen edit/delete icon-->
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let pravoo; columns: columnsToDisplay;" ></tr> ><!--[dragula]='"first-bag"'-->
+  </table>
+
