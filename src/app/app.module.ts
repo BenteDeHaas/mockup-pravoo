@@ -35,9 +35,10 @@ import {
     MatTableModule,
     MatSelectModule,
     MatNativeDateModule,
+    MatButtonToggleModule,
   } from '@angular/material';
 
-  import { AppComponent } from './app.component';
+import { AppComponent } from './app.component';
 import { PravooModelTableComponent } from './pravoo-model-table/pravoo-model-table.component';
 import { PravooModelFormComponent } from './pravoo-model-form/pravoo-model-form.component';
 import { PravooModelClusterComponent } from './pravoo-model-cluster/pravoo-model-cluster.component';
@@ -52,16 +53,6 @@ import { PravooModelCategoryStepperComponent } from './pravoo-model-category-ste
     PravooModelClusterComponent,
     PravooModelCategoryComponent,
     PravooModelCategoryStepperComponent
-    // MatIconModule,
-    // MatDatepickerModule,
-    // MatStepperModule,
-    // MatFormFieldModule,
-    // MatFormFieldModule,
-    // MatExpansionModule,
-    // MatTableModule,
-    // MatCheckboxModule,
-    // MatSelectModule,
-    // MatInputModule
   ],
   imports: [
     BrowserModule,
@@ -69,6 +60,8 @@ import { PravooModelCategoryStepperComponent } from './pravoo-model-category-ste
     MatStepperModule,
     MatFormFieldModule,
     MatIconModule,
+    MatButtonModule,
+    MatButtonToggleModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatFormFieldModule,

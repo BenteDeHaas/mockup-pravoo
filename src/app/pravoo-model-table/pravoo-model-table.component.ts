@@ -17,17 +17,38 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 export class PravooModelTableComponent implements OnInit {
 
+  expanded: boolean;
   pravooModellen: Pravoo [];
-  columnsToDisplay = ['sortorder', 'pravooname', 'iconview', 'iconcopy', 'iconedit', 'icondelete'];
+  selectedPravoo: Pravoo;
+  columnsToDisplay = ['sortorder', 'pravooname', 'iconbuttons'];
 
   constructor(private pravooservice: MockPravooModelService) { }
 
   ngOnInit() {
     this.getPravoo();
+    this.expanded = true;
   }
 
   getPravoo(): void {
     this.pravooModellen = this.pravooservice.getPravooModels();
   }
 
+  onEdit(pravoo: Pravoo): void {
+    this.selectedPravoo = pravoo;
+    this.expanded = false;
+  }
+  onCopy(pravoo: Pravoo): void {
+    this.selectedPravoo = pravoo;
+    this.expanded = false;
+  }
+  onOpen(pravoo: Pravoo): void {
+    this.selectedPravoo = pravoo;
+    this.expanded = false;
+  }
+  onDelete(pravoo: Pravoo): void {
+    this.selectedPravoo = pravoo;
+    this.expanded = false;
+  }
+
 }
+

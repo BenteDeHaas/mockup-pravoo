@@ -2,19 +2,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 <div>
-    <mat-expansion-panel [expanded]=true (opened)=true hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Pravoo Models
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-pravoo-model-table></app-pravoo-model-table>
-    </mat-expansion-panel>
+  <app-pravoo-model-table></app-pravoo-model-table>
 </div>
 
 <div>
   <mat-expansion-panel [expanded]=true (opened)=true hideToggle>
-    <app-pravoo-model-form></app-pravoo-model-form>
+    <app-pravoo-model-form ></app-pravoo-model-form> <!--[pravoo]="selectedPravooModel"-->
   </mat-expansion-panel>
 </div>
 
