@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MockPravooModelService } from './../mock-pravoo-model.service';
+import { Pravoo } from './../pravoo';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-pravoo-model-form',
@@ -8,6 +8,7 @@ import { MockPravooModelService } from './../mock-pravoo-model.service';
 })
 export class PravooModelFormComponent implements OnInit {
 
+  @Input() pravoo: Pravoo;
   step = 0;
   constructor() { }
 

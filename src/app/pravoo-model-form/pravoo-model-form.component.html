@@ -13,7 +13,7 @@
           <input matInput type="number" min="1" placeholder="#">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="ModelNaam">
+          <input matInput [(ngModel)]="pravoo.naam" placeholder="model naam">>
         </mat-form-field>
         <mat-action-row>
           <button mat-button color="primary" (click)="nextStep()">Next</button>

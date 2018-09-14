@@ -2,12 +2,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 <div>
-  <app-pravoo-model-table></app-pravoo-model-table>
+  <app-pravoo-model-table [pravooModellen]="pravooModellen"></app-pravoo-model-table>
 </div>
 
 <div>
   <mat-expansion-panel [expanded]=true (opened)=true hideToggle>
-    <app-pravoo-model-form ></app-pravoo-model-form> <!--[pravoo]="selectedPravooModel"-->
+    <app-pravoo-model-form [pravoo]="selectedPravooModel"></app-pravoo-model-form>
   </mat-expansion-panel>
 </div>
 

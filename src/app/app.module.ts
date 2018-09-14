@@ -2,7 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 // import { MatFormFieldModule } from '@angular/material/form-field';
 // import { MatExpansionModule } from '@angular/material/expansion';
 // import { MatStepperModule } from '@angular/material/stepper';
@@ -57,6 +57,7 @@ import { PravooModelCategoryStepperComponent } from './pravoo-model-category-ste
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatStepperModule,
     MatFormFieldModule,
     MatIconModule,

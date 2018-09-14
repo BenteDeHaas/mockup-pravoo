@@ -1,7 +1,7 @@
 import { PravooModellen } from './../mock-pravoo-modellen';
 import { Pravoo } from './../pravoo';
 import { MockPravooModelService } from './../mock-pravoo-model.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 
 // const initialSelection = [];
@@ -17,38 +17,37 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 export class PravooModelTableComponent implements OnInit {
 
+  @Input() pravooModellen: Pravoo [];
   expanded: boolean;
-  pravooModellen: Pravoo [];
-  selectedPravoo: Pravoo;
+  openType: string;
+  @Output() selectedPravoo: Pravoo;
   columnsToDisplay = ['sortorder', 'pravooname', 'iconbuttons'];
 
-  constructor(private pravooservice: MockPravooModelService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getPravoo();
     this.expanded = true;
-  }
-
-  getPravoo(): void {
-    this.pravooModellen = this.pravooservice.getPravooModels();
   }
 
   onEdit(pravoo: Pravoo): void {
     this.selectedPravoo = pravoo;
+    this.openType = 'edit';
     this.expanded = false;
   }
   onCopy(pravoo: Pravoo): void {
     this.selectedPravoo = pravoo;
+    this.openType = 'copy';
     this.expanded = false;
   }
   onOpen(pravoo: Pravoo): void {
     this.selectedPravoo = pravoo;
+    this.openType = 'open';
     this.expanded = false;
   }
   onDelete(pravoo: Pravoo): void {
     this.selectedPravoo = pravoo;
+    this.openType = 'delete';
     this.expanded = false;
   }
-
 }
 
