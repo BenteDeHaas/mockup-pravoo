@@ -1,62 +1,61 @@
 <p>
-  <mat-expansion-panel [expanded]="expanded" (opened)=true hideToggle>
+<div>
+  <mat-expansion-panel [expanded]="expanded" (opened)="expanded" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Pravoo Models
         </mat-panel-title>
       </mat-expansion-panel-header>
     <table mat-table [dataSource]=pravooModellen class="mat-elevation-z8">
-        <ng-container matColumnDef="sortorder">
-          <span>
-            <th mat-header-cell *matHeaderCellDef> # </th>
-            <td mat-cell *matCellDef="let pravoo"> <span class="badge">{{pravoo.id}} </span></td>
-          </span>
+        <ng-container matColumnDef="sortorder" [ngClass]="'column-sortorder'">
+          <th mat-header-cell *matHeaderCellDef [ngClass]="'column-sortorder'"> # </th>
+          <td mat-cell *matCellDef="let pravoo"> <span class="badge">{{pravoo.id}} </span></td>
         </ng-container>
         <ng-container matColumnDef="pravooname">
-          <span>
-            <th mat-header-cell *matHeaderCellDef [ngClass]="'column-pravooName'"> Naam </th>
-            <td mat-cell *matCellDef="let pravoo" [ngClass]="'column-pravooName'"> {{pravoo.name}} </td>
-          </span>
+          <th mat-header-cell *matHeaderCellDef > Naam </th>
+          <td mat-cell *matCellDef="let pravoo" > {{pravoo.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="iconbuttons">
-          <span>
-            <th mat-header-cell *matHeaderCellDef>
-              <span>
-                  CRUD Acties
-              </span>
-            </th>
-            <td mat-cell *matCellDef="let pravoo">
-                <button class="mat-icon-button material-icons"
-                id="viewModelButton"
-                aria-label="Bekijken"
-                aria-hidden="false"
-                aria-pressed="false"
-                (click)="onOpen( pravoo )">open_in_browser</button><!--remove_red_eye -->
-                <button class="mat-icon-button material-icons"
-                id="copyModelButton"
-                aria-label="Kopiëren"
-                aria-hidden="false"
-                aria-pressed="false"
-                (click)="onCopy( pravoo )">content_copy</button>
-                <button class="mat-icon-button material-icons"
-                id="editModelButton"
-                aria-label="Bewerken"
-                aria-hidden="false"
-                aria-pressed="false"
-                (click)="onEdit( pravoo )">edit</button><!--systemmodellen geen edit/delete icon-->
-                <button class="mat-icon-button material-icons"
-                id="deleteModelButton"
-                aria-label="Verwijderen"
-                aria-hidden="false"
-                aria-pressed="false"
-                (click)="onDelete( pravoo )">delete</button><!--systemmodellen geen edit/delete icon-->
-            </td>
-          </span>
+          <th mat-header-cell *matHeaderCellDef [ngClass]="'column-iconbuttons'">
+              CRUD Acties
+          </th>
+          <td mat-cell *matCellDef="let pravoo" [ngClass]="'column-iconbuttons'">
+              <button class="mat-icon-button material-icons"
+              id="viewModelButton"
+              aria-label="Bekijken"
+              aria-hidden="false"
+              aria-pressed="false"
+              (click)="onOpen( pravoo )">open_in_browser</button><!--remove_red_eye -->
+              <button class="mat-icon-button material-icons"
+              id="copyModelButton"
+              aria-label="Kopiëren"
+              aria-hidden="false"
+              aria-pressed="false"
+              (click)="onCopy( pravoo )">content_copy</button>
+              <button class="mat-icon-button material-icons"
+              id="editModelButton"
+              aria-label="Bewerken"
+              aria-hidden="false"
+              aria-pressed="false"
+              (click)="onEdit( pravoo )">edit</button><!--systemmodellen geen edit/delete icon-->
+              <button class="mat-icon-button material-icons"
+              id="deleteModelButton"
+              aria-label="Verwijderen"
+              aria-hidden="false"
+              aria-pressed="false"
+              (click)="onDelete( pravoo )">delete</button><!--systemmodellen geen edit/delete icon-->
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let pravoo; columns: columnsToDisplay;" ></tr> ><!--[dragula]='"first-bag"'-->
     </table>
   </mat-expansion-panel>
+</div>
+<div>
+  <mat-expansion-panel [expanded]="expandedModel" (opened)="expandedModel" hideToggle>
+    <app-pravoo-model-form [pravoo]="selectedPravoo" ></app-pravoo-model-form><!--hier ook subscriben op event-->
+  </mat-expansion-panel>
+</div>
 

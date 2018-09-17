@@ -1,8 +1,9 @@
 import { PravooModellen } from './../mock-pravoo-modellen';
 import { Pravoo } from './../pravoo';
 import { MockPravooModelService } from './../mock-pravoo-model.service';
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
+
 
 // const initialSelection = [];
 // const allowMultiSelect = false;
@@ -12,42 +13,50 @@ import { SelectionModel } from '@angular/cdk/collections';
 @Component({
   selector: 'app-pravoo-model-table',
   templateUrl: './pravoo-model-table.component.html',
-  styleUrls: ['./pravoo-model-table.component.css']
+  styleUrls: ['./pravoo-model-table.component.css'],
 })
 
 export class PravooModelTableComponent implements OnInit {
 
   @Input() pravooModellen: Pravoo [];
   expanded: boolean;
+  expandedModel: boolean;
   openType: string;
-  @Output() selectedPravoo: Pravoo;
+
+  @Output() selectPravoo: EventEmitter<Pravoo> = new EventEmitter();
+  selectedPravoo: Pravoo;
   columnsToDisplay = ['sortorder', 'pravooname', 'iconbuttons'];
 
-  constructor() { }
+  constructor(private pravooservice: MockPravooModelService) {
+  }
 
   ngOnInit() {
     this.expanded = true;
+    this.expandedModel = false;
   }
 
-  onEdit(pravoo: Pravoo): void {
-    this.selectedPravoo = pravoo;
-    this.openType = 'edit';
+  onSelectPravoo( pravoo: Pravoo ): void {
+    this.pravooservice.setSelected( pravoo );
     this.expanded = false;
+    this.expandedModel = true;
+    this.selectPravoo.emit( pravoo );
+    this.selectedPravoo = pravoo;
+  }
+  onEdit( pravoo: Pravoo ): void {
+    this.openType = 'edit';
+    this.onSelectPravoo( pravoo );
   }
   onCopy(pravoo: Pravoo): void {
-    this.selectedPravoo = pravoo;
     this.openType = 'copy';
-    this.expanded = false;
+    this.onSelectPravoo( pravoo );
   }
   onOpen(pravoo: Pravoo): void {
-    this.selectedPravoo = pravoo;
     this.openType = 'open';
-    this.expanded = false;
+    this.onSelectPravoo( pravoo );
   }
   onDelete(pravoo: Pravoo): void {
-    this.selectedPravoo = pravoo;
     this.openType = 'delete';
-    this.expanded = false;
+    this.onSelectPravoo( pravoo );
   }
 }
 

@@ -5,3 +5,11 @@ table {
 .column-pravooName {
   width: 85%;
 }
+
+.column-iconbuttons {
+  width: 120pt;
+}
+
+.column-sortorder {
+  width: 20pt;
+}

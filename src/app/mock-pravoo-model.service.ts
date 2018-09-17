@@ -9,9 +9,19 @@ import { Injectable } from '@angular/core';
 
 export class MockPravooModelService {
 
+  selectedPravoo: Pravoo;
+
   constructor() { }
 
   public getPravooModels(): Pravoo[] {
     return PravooModellen;
+  }
+
+  public getSelectedPravoo(): Pravoo {
+    return this.selectedPravoo;
+  }
+
+  public setSelected( selectedPravoo: Pravoo ): void {
+    this.selectedPravoo = selectedPravoo;
   }
 }
