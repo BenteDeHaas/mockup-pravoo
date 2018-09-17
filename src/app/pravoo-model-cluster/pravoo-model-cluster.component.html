@@ -1,3 +1,11 @@
-<div>
 
-</div>
+    <mat-accordion >
+        <mat-expansion-panel *ngFor="let cluster of pravooClusters">
+            <mat-expansion-panel-header>
+                <input matInput placeholder={{cluster.name}}/>
+            </mat-expansion-panel-header>
+
+            <app-pravoo-model-category [pravooCategories]="cluster.categories"></app-pravoo-model-category> 
+        </mat-expansion-panel>
+    </mat-accordion>  
+

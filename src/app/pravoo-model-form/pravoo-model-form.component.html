@@ -62,10 +62,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-<!-- list alle clusters alleen sortorder en naam in te stellen dan on select inladen of uitklapbaar tabel?
--->
-        <app-pravoo-model-cluster [pravooCluster]="pravooModellen"></app-pravoo-model-cluster>
-        <app-pravoo-model-category ></app-pravoo-model-category>
+        <app-pravoo-model-cluster [pravooClusters]="pravoo.clusters"></app-pravoo-model-cluster> 
 
         <mat-action-row>
           <button mat-button color="warn" (click)="prevStep()">Previous</button>

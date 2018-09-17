@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MockPravooModelService } from './../mock-pravoo-model.service';
+import { Cluster } from '../pravoo';
+import { MatInputModule } from '@angular/material';
+
+
 
 @Component({
   selector: 'app-pravoo-model-cluster',
@@ -8,6 +12,7 @@ import { MockPravooModelService } from './../mock-pravoo-model.service';
 })
 export class PravooModelClusterComponent implements OnInit {
 
+  @Input() pravooClusters: Cluster[];
   constructor() { }
 
   ngOnInit() {
