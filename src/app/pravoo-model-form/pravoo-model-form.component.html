@@ -1,19 +1,17 @@
-<p>
+<div><span></span>
+
   <mat-accordion class="example-headers-align">
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
         <mat-expansion-panel-header>
             <mat-panel-title>
               Algemeen
             </mat-panel-title>
-            <mat-panel-description>
-              Algemene gegevens Pravoo model
-            </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-form-field>
-          <input matInput type="pravoo.id" min="1" placeholder="#">
+          <input matInput [(ngModel)]="pravoo.id" min="1" placeholder="#"/>
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="pravoo.name" placeholder="Model naam">
+          <input matInput [(ngModel)]="pravoo.name" placeholder="Model naam"/>
         </mat-form-field>
         <mat-action-row>
           <button mat-button color="primary" (click)="nextStep()">Next</button>
@@ -25,23 +23,28 @@
           <mat-panel-title>
             Peilpunten
           </mat-panel-title>
-          <mat-panel-description>
-              <table mat-table [dataSource]="pravoo.peilpunten">
-                  <ng-container matColumnDef="peilpunt#">
-                      <th mat-header-cell *matHeaderCellDef> # </th>
-                      <td mat-cell *matCellDef="let peilpunt"> {{peilpunt.sortorder}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="peilpuntnaam">
-                      <th mat-header-cell *matHeaderCellDef> Naam </th>
-                      <td mat-cell *matCellDef="let peilpunt"> {{peilpunt.name}} </td>
-                  </ng-container>
-              </table>
-          </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <mat-form-field>
-          <input matInput placeholder="Peilpuntnaam"> <!--Lijst peijlpunten inladen met plusje sleepbaar-->
-        </mat-form-field>
+        <table mat-table [dataSource]="pravoo.peilpunten" matSort class="mat-elevation-z8">
+          <ng-container matColumnDef="peilpunt#">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'column-sortorder'"> # </th>
+              <td mat-cell *matCellDef="let peilpunt" [ngClass]="'column-sortorder'">
+              <mat-form-field>
+                <input matInput placeholder={{peilpunt.sortorder}}/>
+              </mat-form-field>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="peilpuntnaam">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Naam </th>
+              <td mat-cell *matCellDef="let peilpunt">
+                <mat-form-field>
+                  <input matInput placeholder={{peilpunt.name}}/>
+                </mat-form-field>
+              </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayColumnsPeilpunten"></tr>
+          <tr mat-row *matRowDef="let myRowData; columns: displayColumnsPeilpunten"></tr>
+        </table>
 
         <mat-action-row>
           <button mat-button color="warn" (click)="prevStep()">Previous</button>
@@ -59,18 +62,15 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <!--lijstclusters toe te voegen met plusje-->
-        <mat-form-field>
-            <input matInput placeholder="Clusternaam"> <!--sleepbaar-->
-        </mat-form-field>
-
-        <app-pravoo-model-category></app-pravoo-model-category>
+<!-- list alle clusters alleen sortorder en naam in te stellen dan on select inladen of uitklapbaar tabel?
+-->
+        <app-pravoo-model-cluster [pravooCluster]="pravooModellen"></app-pravoo-model-cluster>
+        <app-pravoo-model-category ></app-pravoo-model-category>
 
         <mat-action-row>
           <button mat-button color="warn" (click)="prevStep()">Previous</button>
           <button mat-button color="primary" (click)="nextStep()">End</button>
         </mat-action-row>
       </mat-expansion-panel>
-
     </mat-accordion>
-</p>
+</div>

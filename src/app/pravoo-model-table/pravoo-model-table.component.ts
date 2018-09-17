@@ -16,31 +16,39 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./pravoo-model-table.component.css'],
 })
 
+
 export class PravooModelTableComponent implements OnInit {
 
   @Input() pravooModellen: Pravoo [];
-  expanded: boolean;
-  expandedModel: boolean;
-  openType: string;
-
   @Output() selectPravoo: EventEmitter<Pravoo> = new EventEmitter();
+  // expanded: boolean;
+  // expandedModel: boolean;
+  openType: string;
+  step: number;
   selectedPravoo: Pravoo;
   columnsToDisplay = ['sortorder', 'pravooname', 'iconbuttons'];
 
-  constructor(private pravooservice: MockPravooModelService) {
+  constructor( private pravooservice: MockPravooModelService ) {
   }
 
   ngOnInit() {
-    this.expanded = true;
-    this.expandedModel = false;
+    // this.expanded = true;
+    // this.expandedModel = false;
+    this.step = 0;
   }
+
+  // public onOpenModels() {
+  //   // this.expanded = true;
+  //   // this.expandedModel = false;
+  // }
 
   onSelectPravoo( pravoo: Pravoo ): void {
     this.pravooservice.setSelected( pravoo );
-    this.expanded = false;
-    this.expandedModel = true;
+    // this.expanded = false;
+    // this.expandedModel = true;
     this.selectPravoo.emit( pravoo );
     this.selectedPravoo = pravoo;
+    this.nextStep();
   }
   onEdit( pravoo: Pravoo ): void {
     this.openType = 'edit';
@@ -56,7 +64,20 @@ export class PravooModelTableComponent implements OnInit {
   }
   onDelete(pravoo: Pravoo): void {
     this.openType = 'delete';
-    this.onSelectPravoo( pravoo );
+    // this.onSelectPravoo( pravoo );
   }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
 }
 

@@ -1,5 +1,6 @@
 import { Pravoo } from './../pravoo';
 import { Component, OnInit, Input } from '@angular/core';
+import { MatInputModule } from '@angular/material';
 
 @Component({
   selector: 'app-pravoo-model-form',
@@ -10,6 +11,7 @@ export class PravooModelFormComponent implements OnInit {
 
   @Input() pravoo: Pravoo;
   step = 0;
+  displayColumnsPeilpunten = ['peilpunt#', 'peilpuntnaam'];
   constructor() { }
 
   ngOnInit() {

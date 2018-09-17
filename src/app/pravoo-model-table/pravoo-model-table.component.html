@@ -1,11 +1,12 @@
 <p>
 <div>
-  <mat-expansion-panel [expanded]="expanded" (opened)="expanded" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Pravoo Models
-        </mat-panel-title>
-      </mat-expansion-panel-header>
+  <mat-accordion>
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Pravoo Models
+      </mat-panel-title>
+    </mat-expansion-panel-header>
     <table mat-table [dataSource]=pravooModellen class="mat-elevation-z8">
         <ng-container matColumnDef="sortorder" [ngClass]="'column-sortorder'">
           <th mat-header-cell *matHeaderCellDef [ngClass]="'column-sortorder'"> # </th>
@@ -49,13 +50,20 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let pravoo; columns: columnsToDisplay;" ></tr> ><!--[dragula]='"first-bag"'-->
+        <tr mat-row *matRowDef="let pravoo; columns: columnsToDisplay;" ></tr> <!--[dragula]='"first-bag"'-->
     </table>
   </mat-expansion-panel>
-</div>
-<div>
-  <mat-expansion-panel [expanded]="expandedModel" (opened)="expandedModel" hideToggle>
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{selectedPravoo?.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{openType}}: {{selectedPravoo?.name}}
+        </mat-panel-description>
+    </mat-expansion-panel-header>
     <app-pravoo-model-form [pravoo]="selectedPravoo" ></app-pravoo-model-form><!--hier ook subscriben op event-->
   </mat-expansion-panel>
+</mat-accordion>
 </div>
 
