@@ -1,22 +1,71 @@
 
   <mat-accordion >
-      <mat-expansion-panel *ngFor="let category of pravooCategories">
-        <mat-expansion-panel-header>
-            <!-- <input matInput placeholder={{cluster.name}}/> -->
-            <input matInput placeholder={{category.name}}>
-        </mat-expansion-panel-header>
-        <!-- <mat-form-field> -->
-          <mat-select placeholder="Kies type">
-            <mat-option *ngFor="let type of types" [value]="type.value">
-              {{type.viewValue}}
-            </mat-option>
-          </mat-select>
-        <!-- </mat-form-field>
-        <mat-form-field> -->
-            <app-pravoo-model-category-stepper></app-pravoo-model-category-stepper>
-        <!-- </mat-form-field>   -->
+        <mat-expansion-panel *ngFor="let category of pravooCategories" (opened)="onSelectCategory(category)">
+            <mat-expansion-panel-header>
+                <!-- <input matInput placeholder={{cluster.name}}/> -->
+                <mat-form-field style="width:400px !important">
+                  <input matInput [(ngModel)]="category.name" placeholder={{category.name}} required>
+                </mat-form-field>
+            </mat-expansion-panel-header>
+            <mat-form-field>
+              <mat-select [(ngModel)]="category.isChildCharacteristic" required>
+                <mat-option *ngFor="let type of types" [value]="type.isChildCharacteristic" (onSelectionChange)="onSelectType(category, type.isChildCharacteristic)">
+                  {{type.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                  <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Doelen</ng-template>
+                        <table mat-table [dataSource]= category.Goals class="mat-elevation-z8">
+                            <ng-container matColumnDef="sortorder">
+                              <th mat-header-cell *matHeaderCellDef></th>
+                              <td mat-cell *matCellDef="let goal" style="width:25px !important">
+                                <span class="badge">{{goal.sortorder}} </span>
+                              </td>
+                            </ng-container>
+                            <ng-container matColumnDef="goalname">
+                              <th mat-header-cell *matHeaderCellDef></th>
+                              <td mat-cell *matCellDef="let goal" >
+                                <mat-form-field style="width:400px !important">
+                                  <input matInput [(ngModel)]="goal.name" placeholder="Doel" formControlName="firstCtrl" required>
+                                </mat-form-field>
+                              </td>
+                            </ng-container>
+                            <ng-container matColumnDef="eindgoal">
+
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let goal">
+                                <div *ngIf="isChildChar===false"><!--deze div met ngif moet binnen de cell-->
+                                  <mat-checkbox [(ngModel)]="goal.endGoal">Einddoel</mat-checkbox>
+                                </div>
+                                </td>
+
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="goalColumns"></tr>
+                            <tr mat-row *matRowDef="let goal; columns: goalColumns;" ></tr> <!--[dragula]='"first-bag"'-->
+                        </table>
+                    <div>
+                      <button mat-button matStepperNext format_align_right>Next</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup">
+                  <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Signaleringsvlakken</ng-template>
+                    <mat-form-field>
+                      <input matInput formControlName="secondCtrl" required>
+                    </mat-form-field>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form>
+                </mat-step>
+              </mat-horizontal-stepper>
       </mat-expansion-panel>
-    </mat-accordion> 
+    </mat-accordion>
 
 
 

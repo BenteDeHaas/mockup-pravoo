@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, Input } from '@angular/core';
 import { MockPravooModelService } from './../mock-pravoo-model.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Category, Peilpunt, Goal } from '../pravoo';
 
 @Component({
   selector: 'app-pravoo-model-category-stepper',
@@ -11,8 +13,14 @@ export class PravooModelCategoryStepperComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  goalColumns = [];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  @Input() PravooGoals: Goal[];
+  @Input() isChildCharacteristic: boolean;
+  constructor(
+    private _formBuilder: FormBuilder,
+    private pravooservice: MockPravooModelService
+    ) {}
 
 
   ngOnInit() {
@@ -22,5 +30,12 @@ export class PravooModelCategoryStepperComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+    this.pravooservice.getSelectedPravoo();
+
+    if ( this.isChildCharacteristic ) {
+      this.goalColumns = ['sortorder', 'goalname'];
+    } else {
+      this.goalColumns = ['sortorder', 'goalname', 'eindgoal'];
+    }
   }
 }

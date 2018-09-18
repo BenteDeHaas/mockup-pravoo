@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MockPravooModelService } from './../mock-pravoo-model.service';
-import { Category, Peilpunt } from '../pravoo';
+import { Category, Peilpunt, Goal, Pravoo } from '../pravoo';
 import { MatInputModule } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 export interface Type {
-  value: string;
+  isChildCharacteristic: boolean;
   viewValue: string;
 }
 
@@ -15,15 +17,46 @@ export interface Type {
 })
 export class PravooModelCategoryComponent implements OnInit {
 
-  types: Type[] = [
-    {value: 'L', viewValue: 'Leerlijn'},
-    {value: 'K', viewValue: 'Kindkenmerk'}
-  ];
   @Input() pravooCategories: Category[];
+  isChildChar: boolean;
+  Pravoo: Pravoo;
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  goalColumns = ['sortorder', 'goalname', 'eindgoal'];
 
-  constructor() { }
+  types: Type[] = [
+    {isChildCharacteristic: true, viewValue: 'Leerlijn'},
+    {isChildCharacteristic: false, viewValue: 'Kindkenmerk'}
+  ];
+
+  constructor(
+    private _formBuilder: FormBuilder,
+    private pravooservice: MockPravooModelService
+    ) {}
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.Pravoo = this.pravooservice.getSelectedPravoo();
+  }
+
+  onSelectType(category: Category, value: boolean): void {
+    if (value === true) {
+      category.isChildCharacteristic = true;
+      this.isChildChar = true;
+    } else {
+      category.isChildCharacteristic = false;
+      this.isChildChar = false;
+    }
+  }
+
+  onSelectCategory(category: Category): void {
+    this.isChildChar = category.isChildCharacteristic;
   }
 
 }

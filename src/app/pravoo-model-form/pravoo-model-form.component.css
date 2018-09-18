@@ -5,3 +5,11 @@ table {
 .column-sortorder {
   width: 20pt;
 }
+
+.input-sort {
+ width: 20pt !important;
+}
+
+.input-name {
+  width: 400pt !important;
+}
