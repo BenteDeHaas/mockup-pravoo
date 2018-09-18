@@ -29,7 +29,7 @@
                               <th mat-header-cell *matHeaderCellDef></th>
                               <td mat-cell *matCellDef="let goal" >
                                 <mat-form-field style="width:400px !important">
-                                  <input matInput [(ngModel)]="goal.name" placeholder="Doel" formControlName="firstCtrl" required>
+                                  <input matInput [(ngModel)]="goal.name" placeholder="{{goal.name}}"  required><!--formControlName="firstCtrl"dat zorgt ervoor dat alles waarde vd 1e heeft-->
                                 </mat-form-field>
                               </td>
                             </ng-container>
@@ -38,7 +38,7 @@
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td mat-cell *matCellDef="let goal">
                                 <div *ngIf="isChildChar===false"><!--deze div met ngif moet binnen de cell-->
-                                  <mat-checkbox [(ngModel)]="goal.endGoal">Einddoel</mat-checkbox>
+                                  <mat-checkbox [(ngModel)]="goal.endGoal" aria-checked="goal.endGoal">Einddoel</mat-checkbox>
                                 </div>
                                 </td>
 
