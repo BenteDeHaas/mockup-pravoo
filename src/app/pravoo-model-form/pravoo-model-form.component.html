@@ -1,30 +1,14 @@
 <div *ngIf="pravoo">
 
-  <mat-accordion class="example-headers-align">
-      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-              Algemeen
-            </mat-panel-title>
-        </mat-expansion-panel-header>
+        <h3> Algemene info</h3>
         <mat-form-field style="width:25px !important">
           <input matInput [(ngModel)]="pravoo.id" min="1" placeholder="#" />
         </mat-form-field>
         <mat-form-field style="width:400px !important">
           <input matInput [(ngModel)]="pravoo.name" placeholder="Model naam" />
         </mat-form-field>
-        <mat-action-row>
-          <button mat-button color="primary" (click)="nextStep()">Next</button>
-        </mat-action-row>
-      </mat-expansion-panel>
 
-      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Peilpunten
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
+        <h3>Peilpunten<button class="mat-icon-button material-icons" (click)="addFieldValue()">add</button></h3>
         <table mat-table [dataSource]="pravoo.peilpunten" matSort class="mat-elevation-z8">
           <ng-container matColumnDef="peilpunt#">
               <th mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'input-sort'"> # </th>
@@ -35,39 +19,33 @@
               </td>
           </ng-container>
           <ng-container matColumnDef="peilpuntnaam">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Naam </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> naam </th>
               <td mat-cell *matCellDef="let peilpunt">
               <mat-form-field style="width:400px !important">
-                  <input matInput [(ngModel)]="peilpunt.name" placeholder={{peilpunt.name}}/>
+                  <input matInput [(ngModel)]="peilpunt.name" placeholder="Naam"/>
                 </mat-form-field>
               </td>
           </ng-container>
+          <ng-container matColumnDef="buttons">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> +/- </th>
+              <td mat-cell *matCellDef="let peilpunt">
+                  <button class="mat-icon-button material-icons"
+                  id="deleteModelButton"
+                  aria-label="Verwijderen"
+                  aria-hidden="false"
+                  aria-pressed="false"
+                  (click)="deleteFieldValue(peilpunt)">delete</button>
+              </td>
+          </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayColumnsPeilpunten"></tr>
-          <tr mat-row *matRowDef="let myRowData; columns: displayColumnsPeilpunten"></tr>
+          <tr mat-row *matRowDef="let myRowData; columns: displayColumnsPeilpunten"> 
+          </tr>
         </table>
+        
 
-        <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()">Previous</button>
-          <button mat-button color="primary" (click)="nextStep()">Next</button>
-        </mat-action-row>
-      </mat-expansion-panel>
 
-      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Clusters
-          </mat-panel-title>
-          <mat-panel-description>
-            Clusters van dit model
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+        <h3>Clusters<button class="mat-icon-button material-icons">add</button></h3>
 
         <app-pravoo-model-cluster [pravooClusters]="pravoo.clusters"></app-pravoo-model-cluster>
 
-        <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()">Previous</button>
-          <button mat-button color="primary" (click)="nextStep()">Save</button>
-        </mat-action-row>
-      </mat-expansion-panel>
-    </mat-accordion>
 </div>

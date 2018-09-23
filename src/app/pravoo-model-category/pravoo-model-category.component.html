@@ -1,4 +1,5 @@
 
+<h3>Categoriën<button class="mat-icon-button material-icons">add</button></h3>
   <mat-accordion >
         <mat-expansion-panel *ngFor="let category of pravooCategories" (opened)="onSelectCategory(category)">
             <mat-expansion-panel-header>
@@ -34,34 +35,70 @@
                               </td>
                             </ng-container>
                             <ng-container matColumnDef="eindgoal">
-
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td mat-cell *matCellDef="let goal">
                                 <div *ngIf="isChildChar===false"><!--deze div met ngif moet binnen de cell-->
                                   <mat-checkbox [(ngModel)]="goal.endGoal" aria-checked="goal.endGoal">Einddoel</mat-checkbox>
                                 </div>
                                 </td>
-
+                            </ng-container>
+                            <ng-container matColumnDef="buttons">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> +/- </th>
+                                <td mat-cell *matCellDef="let peilpunt">
+                                    <button class="mat-icon-button material-icons"
+                                    id="deleteModelButton"
+                                    aria-label="Verwijderen"
+                                    aria-hidden="false"
+                                    aria-pressed="false"
+                                    (click)="deleteFieldValue(peilpunt)">delete</button>
+                                </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="goalColumns"></tr>
                             <tr mat-row *matRowDef="let goal; columns: goalColumns;" ></tr> <!--[dragula]='"first-bag"'-->
                         </table>
+                        <button class="mat-icon-button material-icons">add</button>
                     <div>
                       <button mat-button matStepperNext format_align_right>Next</button>
                     </div>
                   </form>
                 </mat-step>
                 <mat-step [stepControl]="secondFormGroup">
-                  <form [formGroup]="secondFormGroup">
+                  <!-- <form [formGroup]="secondFormGroup" > -->
                     <ng-template matStepLabel>Signaleringsvlakken</ng-template>
-                    <mat-form-field>
-                      <input matInput formControlName="secondCtrl" required>
-                    </mat-form-field>
+
+                      <table class="mat-elevation-z8">
+                        <thead>
+                            <tr>
+                              <th>Doelen</th>
+                              <th class="rotate" *ngFor="let peilpunt of selectedCategory.Peilpunten" ><div><span>{{peilpunt.name}}</span></div></th> </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let goal of selectedCategory.Goals">
+                                <td>{{goal.name}}</td>
+                                <td>
+                                    <mat-checkbox></mat-checkbox>
+                                </td> 
+                                <td>
+                                    <mat-checkbox></mat-checkbox>
+                                </td>  
+                                <td>
+                                    <mat-checkbox></mat-checkbox>
+                                </td>  
+                                <td>
+                                    <mat-checkbox></mat-checkbox>
+                                </td>  
+                                <td>
+                                    <mat-checkbox></mat-checkbox>
+                                </td>    
+                            </tr>  
+                        </tbody>    
+                      </table>
+
                     <div>
                       <button mat-button matStepperPrevious>Back</button>
                       <button mat-button matStepperNext>Next</button>
                     </div>
-                  </form>
+
                 </mat-step>
               </mat-horizontal-stepper>
       </mat-expansion-panel>

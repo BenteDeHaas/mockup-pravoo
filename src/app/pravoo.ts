@@ -17,6 +17,7 @@ export class Category {
   sortorder: number;
   isChildCharacteristic: boolean;
   Goals: Goal[];
+  Peilpunten: Peilpunt[];
 }
 
 export class Cluster {

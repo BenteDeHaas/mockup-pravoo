@@ -18,12 +18,14 @@ export interface Type {
 export class PravooModelCategoryComponent implements OnInit {
 
   @Input() pravooCategories: Category[];
+
   isChildChar: boolean;
   Pravoo: Pravoo;
+  selectedCategory: Category;
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  goalColumns = ['sortorder', 'goalname', 'eindgoal'];
+  goalColumns = ['sortorder', 'goalname', 'eindgoal', 'buttons'];
 
   types: Type[] = [
     {isChildCharacteristic: true, viewValue: 'Leerlijn'},
@@ -43,6 +45,7 @@ export class PravooModelCategoryComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
     this.Pravoo = this.pravooservice.getSelectedPravoo();
+    this.selectedCategory = this.pravooCategories[2];
   }
 
   onSelectType(category: Category, value: boolean): void {
@@ -53,10 +56,12 @@ export class PravooModelCategoryComponent implements OnInit {
       category.isChildCharacteristic = false;
       this.isChildChar = false;
     }
+    this.selectedCategory = category;
   }
 
   onSelectCategory(category: Category): void {
     this.isChildChar = category.isChildCharacteristic;
+    this.selectedCategory = category;
   }
 
 }

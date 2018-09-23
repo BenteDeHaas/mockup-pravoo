@@ -3,10 +3,10 @@
         <mat-expansion-panel *ngFor="let cluster of pravooClusters">
             <mat-expansion-panel-header>
               <mat-form-field style="width:400px !important">
-                  <input matInput [(ngModel)]="cluster.name" placeholder={{cluster.name}} required/>
+                  <input matInput [(ngModel)]="cluster.name" placeholder= "Naam" required/>
+                  <!-- <button layout-align="end end" class="mat-icon-button material-icons">delete</button> -->
               </mat-form-field>
             </mat-expansion-panel-header>
             <app-pravoo-model-category [pravooCategories]="cluster.categories"></app-pravoo-model-category>
         </mat-expansion-panel>
     </mat-accordion>
-

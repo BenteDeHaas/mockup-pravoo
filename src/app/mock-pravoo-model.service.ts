@@ -24,4 +24,11 @@ export class MockPravooModelService {
   public setSelected( selectedPravoo: Pravoo ): void {
     this.selectedPravoo = selectedPravoo;
   }
+
+  public addPeilpunt( pravoo: Pravoo , peilpunt: Peilpunt ): void {
+  }
+
+  public delPeilpunt( pravoo: Pravoo , peilpunt: Peilpunt ): void {
+
+  }
 }

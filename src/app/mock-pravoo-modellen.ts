@@ -38,6 +38,7 @@ const Peilpunt5: Peilpunt = {
   name: 'Afscheid, veiligheid en welbevinden',
   sortorder: 1,
   isChildCharacteristic: true,
+  Peilpunten: Peilpunten,
   Goals: [
     {
       id: 1,
@@ -65,6 +66,7 @@ const Peilpunt5: Peilpunt = {
   name: 'Sociale vaardigheden',
   sortorder: 2,
   isChildCharacteristic: true,
+  Peilpunten: Peilpunten,
   Goals: [
     {
       id: 4,
@@ -104,6 +106,7 @@ const Peilpunt5: Peilpunt = {
   name: 'Spelen',
   sortorder: 1,
   isChildCharacteristic: false,
+  Peilpunten: Peilpunten,
   Goals: [
     {
       id: 9,
@@ -143,6 +146,7 @@ const Peilpunt5: Peilpunt = {
   name: 'Werken',
   sortorder: 2,
   isChildCharacteristic: false,
+  Peilpunten: Peilpunten,
   Goals: [
     {
       id: 14,

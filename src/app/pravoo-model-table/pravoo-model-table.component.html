@@ -5,7 +5,7 @@
     <mat-expansion-panel-header>
       <mat-panel-title>
         Pravoo Models
-      </mat-panel-title>
+      </mat-panel-title><button class="mat-icon-button material-icons">add</button>
     </mat-expansion-panel-header>
     <table mat-table [dataSource]=pravooModellen class="mat-elevation-z8">
         <ng-container matColumnDef="sortorder" [ngClass]="'column-sortorder'">
@@ -52,8 +52,8 @@
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let pravoo; columns: columnsToDisplay;" ></tr> <!--[dragula]='"first-bag"'-->
     </table>
-  </mat-expansion-panel>
-  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+</mat-expansion-panel> 
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle> 
     <mat-expansion-panel-header>
         <mat-panel-title>
           {{selectedPravoo?.name}}
